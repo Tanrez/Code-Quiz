@@ -15,49 +15,49 @@ const scoreDiv = document.getElementById("scoreContainer");
 let questions = [
     {
         question : "What does HTML stand for?",
-        imgSrc : "img/html.png",
+        imgSrc : "imgs/html.png",
         choiceA : "Correct",
         choiceB : "Wrong",
         choiceC : "Wrong",
         correct : "A"
     },{
         question : "What does CSS stand for?",
-        imgSrc : "img/css.png",
+        imgSrc : "imgs/css.png",
         choiceA : "Wrong",
         choiceB : "Correct",
         choiceC : "Wrong",
         correct : "B"
     },{
         question : "What does JS stand for?",
-        imgSrc : "img/js.png",
+        imgSrc : "imgs/js.png",
         choiceA : "Wrong",
         choiceB : "Wrong",
         choiceC : "Correct",
         correct : "C"
     },{
         question : "What does JS stand for?",
-        imgSrc : "img/js.png",
+        imgSrc : "imgs/js.png",
         choiceA : "Wrong",
         choiceB : "Wrong",
         choiceC : "Correct",
         correct : "C"
     },{
         question : "What does JS stand for?",
-        imgSrc : "img/js.png",
+        imgSrc : "imgs/js.png",
         choiceA : "Wrong",
         choiceB : "Wrong",
         choiceC : "Correct",
         correct : "C"
     },{
         question : "What does JS stand for?",
-        imgSrc : "img/js.png",
+        imgSrc : "imgs/js.png",
         choiceA : "Wrong",
         choiceB : "Wrong",
         choiceC : "Correct",
         correct : "C"
     },{
         question : "What does JS stand for?",
-        imgSrc : "img/js.png",
+        imgSrc : "imgs/js.png",
         choiceA : "Wrong",
         choiceB : "Wrong",
         choiceC : "Correct",
@@ -151,36 +151,29 @@ function checkAnswer(answer){
         scoreRender();
     }
 }
-// checkAnwer
 
-function checkAnswer(answer){
-    if( answer == questions[runningQuestion].correct){
-        // answer is correct
-        score++;
-        // change progress color to green
-        answerIsCorrect();
-    }else{
-        // answer is wrong
-        // change progress color to red
-        answerIsWrong();
-    }
-    count = 0;
-    if(runningQuestion < lastQuestion){
-        runningQuestion++;
-        renderQuestion();
-    }else{
-        // end the quiz and show the score
-        clearInterval(TIMER);
-        scoreRender();
-    }
-}
-
-// answer is correct
+//if answer is correct
 function answerIsCorrect(){
     document.getElementById(runningQuestion).style.backgroundColor = "#0f0";
 }
 
-// answer is Wrong
+//if answer is Wrong
 function answerIsWrong(){
     document.getElementById(runningQuestion).style.backgroundColor = "#f00";
+}
+// score render
+function scoreRender(){
+    scoreDiv.style.display = "block";
+    
+    // calculate the amount of question percent answered by the user
+    const scorePerCent = Math.round(100 * score/questions.length);
+    
+    // choose the image based on the scorePerCent
+    let img = (scorePerCent >= 70) ? "imgs/passed.png" :
+              (scorePerCent < 70) ? "imgs/failed.png" :
+              "img/1.png";
+    
+    scoreDiv.innerHTML = "<img src="+ img +">";
+    scoreDiv.innerHTML += "<p>"+ scorePerCent +"%</p>";
+
 }
