@@ -16,52 +16,52 @@ let questions = [
     {
         question : "What does HTML stand for?",
         imgSrc : "imgs/html.png",
-        choiceA : "Correct",
-        choiceB : "Wrong",
-        choiceC : "Wrong",
+        choiceA : "Hyper Text Mark-up Language",
+        choiceB : "Hop To Mom's Lair",
+        choiceC : "Hyper Text Make-up Languae",
         correct : "A"
+    },{
+        question : "Whats the first tag of an HTML?",
+        imgSrc : "imgs/html.png",
+        choiceA : "body",
+        choiceB : "html",
+        choiceC : "head",
+        correct : "B"
+    },{
+        question : "What is HTML?",
+        imgSrc : "imgs/html.png",
+        choiceA : "A programming language",
+        choiceB : "A movie",
+        choiceC : "A Mark-up Language",
+        correct : "C"
     },{
         question : "What does CSS stand for?",
         imgSrc : "imgs/css.png",
-        choiceA : "Wrong",
-        choiceB : "Correct",
-        choiceC : "Wrong",
+        choiceA : "Cross Style Sheets",
+        choiceB : "Cascading Style Scripts",
+        choiceC : "Cascading Style Sheets",
+        correct : "C"
+    },{
+        question : "What can CSS do?",
+        imgSrc : "imgs/css.png",
+        choiceA : "Both B and C",
+        choiceB : "Add Colors",
+        choiceC : "Modify Layout",
+        correct : "A"
+    },{
+        question : "What does JS stand for?",
+        imgSrc : "imgs/js.png",
+        choiceA : "JavaSheet",
+        choiceB : "JavaStuff",
+        choiceC : "JavaScript",
+        correct : "C"
+    },{
+        question : "Which is a programming language?",
+        imgSrc : "imgs/js.png",
+        choiceA : "HTML",
+        choiceB : "JavaScript",
+        choiceC : "CSS",
         correct : "B"
-    },{
-        question : "What does JS stand for?",
-        imgSrc : "imgs/js.png",
-        choiceA : "Wrong",
-        choiceB : "Wrong",
-        choiceC : "Correct",
-        correct : "C"
-    },{
-        question : "What does JS stand for?",
-        imgSrc : "imgs/js.png",
-        choiceA : "Wrong",
-        choiceB : "Wrong",
-        choiceC : "Correct",
-        correct : "C"
-    },{
-        question : "What does JS stand for?",
-        imgSrc : "imgs/js.png",
-        choiceA : "Wrong",
-        choiceB : "Wrong",
-        choiceC : "Correct",
-        correct : "C"
-    },{
-        question : "What does JS stand for?",
-        imgSrc : "imgs/js.png",
-        choiceA : "Wrong",
-        choiceB : "Wrong",
-        choiceC : "Correct",
-        correct : "C"
-    },{
-        question : "What does JS stand for?",
-        imgSrc : "imgs/js.png",
-        choiceA : "Wrong",
-        choiceB : "Wrong",
-        choiceC : "Correct",
-        correct : "C"
     }
 ];
 
@@ -70,7 +70,7 @@ let questions = [
 const lastQuestion = questions.length - 1;
 let runningQuestion = 0;
 let count = 0;
-const questionTime = 10; // 10s
+const questionTime = 5; // 5s
 const gaugeWidth = 150; // 150px
 const gaugeUnit = gaugeWidth / questionTime;
 let TIMER;
@@ -151,7 +151,6 @@ function checkAnswer(answer){
         scoreRender();
     }
 }
-
 //if answer is correct
 function answerIsCorrect(){
     document.getElementById(runningQuestion).style.backgroundColor = "#0f0";
@@ -171,9 +170,16 @@ function scoreRender(){
     // choose the image based on the scorePerCent
     let img = (scorePerCent >= 70) ? "imgs/passed.png" :
               (scorePerCent < 70) ? "imgs/failed.png" :
-              "img/1.png";
+              "";
     
     scoreDiv.innerHTML = "<img src="+ img +">";
     scoreDiv.innerHTML += "<p>"+ scorePerCent +"%</p>";
-
-}
+    const isStorage = "undefined" !== typeof localStorage;
+    //storage
+localStorage.setItem("", "scorePerCent")
+document.getElementById("scoreContainer").value = scorePerCent;
+    document.getElementById("scorePercent").innerHTML += scorePerCent + "<br />";  
+    if (isStorage && localStorage.getItem("fap-scores")){
+        elements.score = localStorage.getItem("fap-scores").split(",");
+    }
+isStorage && localStorage.setItem("fap-scores", elements.scores)}
